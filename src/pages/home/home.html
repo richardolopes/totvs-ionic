@@ -3,9 +3,14 @@
     <ion-title>
       Wisdom APP
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)='doLogout()'>
+        <ion-icon name='log-out'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button (click)='doLogout()' ion-button full color="danger">Sair</button>
+  <button ion-button full color="danger">Sair</button>
 </ion-content>
