@@ -16,13 +16,13 @@ export class LoginPage {
   }
 
   doLogin() {
-    let isAthenticated = this.loginService.doLogin(this.user, this.password);
-
-    if (isAthenticated) {
-      console.log("Usuário OK");
-    } else { 
-      console.log("Usuário ERRADO");
-    }
+    this.loginService.doLogin(this.user, this.password).then(
+      (res) => {
+        this.navCtrl.setRoot(HomePage);
+      }
+    ).catch(() => {
+      this.showToast("Usuário e/ou senha inválidos.");
+    });
   }
 
   showToast(message: string) {
