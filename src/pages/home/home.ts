@@ -50,10 +50,11 @@ export class HomePage {
     confirm.present();
   }
 
-  public getPosts() {
+  public getPosts(refresher?) {
     this.posts.getPosts().subscribe((res:any) => {
       this.postsList = res.posts;
       
+      if (refresher) refresher.complete();
       console.log(res);
     },erro => {
       console.log(erro);
@@ -61,9 +62,7 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
-    setTimeout(() => {
-      refresher.complete();
-    }, 2000);
+    this.getPosts(refresher);
   }
 
 }
