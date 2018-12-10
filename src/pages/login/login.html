@@ -1,0 +1,19 @@
+<ion-content padding>
+  <img src="./assets/imgs/wisdom.png">
+  <br>
+  Olá {{user}}
+  <br>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Usuário</ion-label>
+      <ion-input [(ngModel)]='user' type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input [(ngModel)]='password' type="password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button (click)='doLogin()' ion-button full color="secondary">Entrar</button>
+</ion-content>
