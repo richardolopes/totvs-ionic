@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { LoginService } from '../../providers/login.service';
 import { LoginPage } from '../login/login';
 import { AlertController } from 'ionic-angular';
+import { PostsService } from '../../providers/posts.services';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  postsList = [];
+  constructor(public navCtrl: NavController, 
+              private loginService: LoginService, 
+              public alertCtrl: AlertController,
+              private posts: PostsService,
+              public loadingCtrl: LoadingController) {
+  }
 
-  constructor(public navCtrl: NavController, private loginService: LoginService, public alertCtrl: AlertController) {
-
+  ionViewDidLoad() {
+    this.getPosts();
   }
 
   doLogout() {
@@ -28,14 +36,34 @@ export class HomePage {
         {
           text: 'Sim',
           handler: () => {
+            const loader = this.loadingCtrl.create({
+              content: "Saindo..."
+            });
+            loader.present();
             this.loginService.doLogout();
             this.navCtrl.setRoot(LoginPage);
+            loader.dismiss();
           }
         }
       ]
     });
     confirm.present();
+  }
 
+  public getPosts() {
+    this.posts.getPosts().subscribe((res:any) => {
+      this.postsList = res.posts;
+      
+      console.log(res);
+    },erro => {
+      console.log(erro);
+    });
+  }
+
+  doRefresh(refresher) {
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
   }
 
 }

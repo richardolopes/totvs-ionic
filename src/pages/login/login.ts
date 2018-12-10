@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginService } from '../../providers/login.service';
-import { Storage } from '@ionic/storage';
+import { SessionService } from '../../providers/session.service';
 
 @Component({
   selector: 'page-login',
@@ -12,7 +12,11 @@ export class LoginPage {
   private user: string;
   private password: string;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, public loginService: LoginService, private storage: Storage, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, 
+              public toastCtrl: ToastController, 
+              public loginService: LoginService, 
+              private session: SessionService, 
+              public loadingCtrl: LoadingController) {
 
   }
 
@@ -23,7 +27,7 @@ export class LoginPage {
     loader.present();
     this.loginService.doLogin(this.user, this.password).then(
       (res) => {
-        this.storage.set('user', res).then(() => {
+        this.session.setUser(res).then(() => {
           loader.dismiss();
           this.navCtrl.setRoot(HomePage);
         });

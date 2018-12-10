@@ -1,16 +1,41 @@
 <ion-header>
   <ion-navbar color="custom">
     <ion-title>
-      Wisdom APP
+      App
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)='doLogout()'>
+      <button ion-button (click)='doLogout()' class="doLogout">
         <ion-icon name='log-out'></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button ion-button full color="danger">Sair</button>
+<ion-content>
+  <ion-fab right bottom>
+    <button ion-fab color="light"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="camera"></ion-icon></button>
+      <button ion-fab><ion-icon name="folder"></ion-icon></button>
+      <button ion-fab><ion-icon name="arrow-up"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor='let post of postsList'>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="http://thfservices.totvs.com.br:8085{{post.user.photo_url}}">
+      </ion-avatar>
+      <h2>{{post.user.name}}</h2>
+    </ion-item>
+    <img src="http://thfservices.totvs.com.br:8085{{post.photo_url}}">
+    <ion-card-content>
+      <p>{{post.subtitle}}</p>
+    </ion-card-content>  
+  </ion-card>
+
 </ion-content>

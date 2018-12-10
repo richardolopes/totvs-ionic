@@ -13,6 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { LoginService } from '../providers/login.service';
 import { SessionService } from '../providers/session.service';
+import { HttpService } from '../providers/http.services';
+import { PostsService } from '../providers/posts.services';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { SessionService } from '../providers/session.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginService,
-    SessionService
+    SessionService,
+    HttpService,
+    PostsService
   ]
 })
 export class AppModule {}
