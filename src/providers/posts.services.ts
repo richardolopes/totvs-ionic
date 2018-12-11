@@ -6,7 +6,7 @@ import { HttpService } from "./http.services";
 export class PostsService {
     constructor(private http: HttpService, private storage: Storage) {}
 
-    getPosts() {
-        return this.http.get("http://thfservices.totvs.com.br:8085/posts");
+    getPosts(page) {
+        return this.http.get("http://thfservices.totvs.com.br:8085/posts?page=" + page + "&pageSize=" + 10);
     }
 }
