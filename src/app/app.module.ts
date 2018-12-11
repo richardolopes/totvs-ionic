@@ -19,6 +19,7 @@ import { HttpService } from '../providers/http.services';
 import { PostsService } from '../providers/posts.services';
 
 import { Camera } from '@ionic-native/camera';
+import { CameraService } from '../providers/camera.services';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { Camera } from '@ionic-native/camera';
     SessionService,
     HttpService,
     PostsService,
-    Camera
+    Camera,
+    CameraService
   ]
 })
 export class AppModule {}

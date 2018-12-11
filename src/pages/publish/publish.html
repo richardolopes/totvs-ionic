@@ -1,11 +1,26 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>
             Nova Postagem
         </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+    <img *ngIf='photo' [src]='photo'>
+    <br>
+    <ion-textarea class="legenda" placeholder="Digite sua legenda...">
 
+    </ion-textarea>
+
+    <ion-item>
+        <ion-label>Compartilhar localização</ion-label>
+        <ion-toggle [(ngModel)]='enableLocation'></ion-toggle>
+    </ion-item>
+
+    <ion-footer>
+        <button ion-button block>
+            Compartilhar
+        </button>
+    </ion-footer>
 </ion-content>

@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SessionService } from '../providers/session.service';
+import { PublishPage } from '../pages/publish/publish';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +18,8 @@ export class MyApp {
     platform.ready().then(() => {
       this.session.getUser().then(user => {
         if (user) {
-          this.rootPage = HomePage;
+          this.rootPage = PublishPage;
+          // this.rootPage = HomePage;
         } else {
           this.rootPage = LoginPage;
         }

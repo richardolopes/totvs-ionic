@@ -68,8 +68,8 @@ export class HomePage {
     });
   }
 
-  goToPublish() {
-    this.navCtrl.push(PublishPage);
+  goToPublish(from: string) {
+    this.navCtrl.push(PublishPage, {type: from});
   }
 
   doRefresh(refresher) {
